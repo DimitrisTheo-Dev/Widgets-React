@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 interface Items {
     title: string;
     content: string;
+
 }
 
-const Accordion = ({ items }: any): any => {
-    const [activeIndex, setActiveIndex] = useState(-1);
+const Accordion= ({ items }: any): any => {
+    const [activeIndex, setActiveIndex] = useState<number | null>(null);
+    console.log(items);
+    console.log({items});
 
     const onTitleClick = (index: number) => {
         setActiveIndex(index);
