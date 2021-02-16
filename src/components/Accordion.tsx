@@ -6,10 +6,8 @@ interface Items {
 
 }
 
-const Accordion= ({ items }: any): any => {
+const Accordion = ({ items }:  any): object => {
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
-    console.log(items);
-    console.log({items});
 
     const onTitleClick = (index: number) => {
         setActiveIndex(index);

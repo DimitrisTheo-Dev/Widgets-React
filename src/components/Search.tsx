@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const Search = () => {
-    const [term, setTerm] = useState('programming');
-    const [results, setResults] = useState([]);
-    const [debouncedTerm, setDebouncedTerm] = useState(term);
+    const [term, setTerm] = useState<string>('programming');
+    const [results, setResults] = useState<string | any>([]);
+    const [debouncedTerm, setDebouncedTerm] = useState<string>(term);
 
     //this runs every time the user types something
     useEffect(() => {
@@ -32,7 +32,7 @@ const Search = () => {
         search();
     }, [debouncedTerm]);
 
-    const renderedResults = results.map((result) => {
+    const renderedResults = results.map((result: any) => {
         return (
             <div key={ result.pageid } className="item">
                 <div className="right floated content">
@@ -57,7 +57,7 @@ const Search = () => {
                 <div className="field">
                     <label>Enter Search Term</label>
                     <input
-                        value={term}
+                        value={ term }
                         onChange={(e) => setTerm(e.target.value)}
                         className="input"
                     />
