@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Dropdown from './Dropdown';
-import Convert from "./Convert";
+import Convert, { LanguageT } from "./Convert";
 
 const options = [
     {
@@ -18,8 +18,8 @@ const options = [
 ]
 
 const Translate = () =>  {
-    const [language, setLanguage] = useState<object>(options[0]);
-    const [text, setText] = useState<string>('')
+    const [language, setLanguage] = useState<LanguageT>(options[0]);
+    const [text, setText] = useState('')
     return (
         <div>
             <div className="ui form">

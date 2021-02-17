@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 
-interface Items {
+type Item = {
     title: string;
     content: string;
-
 }
-
-const Accordion = ({ items }:  any): object => {
+type Items = {
+    items: Array<Item>;
+}
+const Accordion = ({ items }: Items) => {
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
     const onTitleClick = (index: number) => {
         setActiveIndex(index);
     };
 
-    const renderedItems = items.map((item: Items, index : number) => {
+    const renderedItems = items.map((item: Item, index : number) => {
         const active = index === activeIndex ? 'active' : '';
         return (
             <React.Fragment key={ item.title }>

@@ -1,10 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
+import {LanguageT} from "./Convert";
 // interface Ref {
 //     ref: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 // }
-const Dropdown = ({ label, options, selected, onSelectedChange} : any) => {
+type DropdownProps = {
+    selected: LanguageT;
+    label: string;
+    options:  Array<LanguageT>;
+    onSelectedChange: (option: LanguageT) => void;
+}
+
+const Dropdown = ({ label, options, selected, onSelectedChange} : DropdownProps) => {
     const [open, setOpen] = useState(false);
-    const ref = useRef();
+    const ref = useRef<HTMLDivElement | null>(null);
     useEffect(() => {
         const onBodyClick = (event: any) =>  {
             if (ref.current && ref.current.contains(event.target)) {
@@ -20,7 +28,7 @@ const Dropdown = ({ label, options, selected, onSelectedChange} : any) => {
         };
     }, []);
 
-    const renderedOptions = options.map((option: any) => {
+    const renderedOptions = options.map((option) => {
         if(option.value === selected.value) {
             return null;
         }

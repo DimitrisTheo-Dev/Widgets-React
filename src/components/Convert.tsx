@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-interface Conv  {
-    language: string;
+// interface ConvertI  {
+//     language: string;
+//     text: string;
+// }
+export type LanguageT = {
+    label: string;
+    value: string;
+}
+ type ConvertT = {
+    language: LanguageT;
     text: string;
 }
-const Convert = ({ language , text }: Conv) => {
+const Convert = ({ language , text }: ConvertT) => {
     const [translated, setTranslated] = useState('');
-    const [debouncedText, setDebouncedText] = useState<any>(text);
+    const [debouncedText, setDebouncedText] = useState(text);
     useEffect(() => {
         const timerId = setTimeout(() => {
             setDebouncedText(text);

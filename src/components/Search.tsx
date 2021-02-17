@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const Search = () => {
     const [term, setTerm] = useState<string>('programming');
-    const [results, setResults] = useState<string | any>([]);
+    const [results, setResults] = useState<any[]>([]);
     const [debouncedTerm, setDebouncedTerm] = useState<string>(term);
 
     //this runs every time the user types something
@@ -32,7 +32,7 @@ const Search = () => {
         search();
     }, [debouncedTerm]);
 
-    const renderedResults = results.map((result: any) => {
+    const renderedResults = results.map((result) => {
         return (
             <div key={ result.pageid } className="item">
                 <div className="right floated content">
@@ -68,4 +68,4 @@ const Search = () => {
     );
 }
 
-export default Search
+export default Search;
