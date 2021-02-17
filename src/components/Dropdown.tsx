@@ -1,7 +1,25 @@
-import React, {useState} from 'react';
-
-const Dropdown = ({ options, selected, onSelectedChange} : any) => {
+import React, { useEffect, useRef, useState } from 'react';
+// interface Ref {
+//     ref: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+// }
+const Dropdown = ({ label, options, selected, onSelectedChange} : any) => {
     const [open, setOpen] = useState(false);
+    const ref = useRef();
+    useEffect(() => {
+        const onBodyClick = (event: any) =>  {
+            if (ref.current && ref.current.contains(event.target)) {
+                return;
+            }
+            setOpen(false);
+        };
+
+        document.body.addEventListener('click', onBodyClick);
+
+        return () => {
+            document.body.removeEventListener('click', onBodyClick);
+        };
+    }, []);
+
     const renderedOptions = options.map((option: any) => {
         if(option.value === selected.value) {
             return null;
@@ -17,9 +35,9 @@ const Dropdown = ({ options, selected, onSelectedChange} : any) => {
         );
     });
     return (
-        <div className="ui form">
+        <div ref={ref} className="ui form">
             <div className="field">
-                <label className="label">Select color</label>
+                <label className="label">{ label }</label>
                 <div onClick={() => setOpen(!open)}
                      className={`ui selection dropdown ${open ? 'visible active' : ''}`}
                 >
@@ -27,9 +45,18 @@ const Dropdown = ({ options, selected, onSelectedChange} : any) => {
                     <div className="text">{ selected.label }</div>
                     <div className={`menu ${open ? 'visible transition' : ''}`}>{ renderedOptions }</div>
                 </div>
+
             </div>
+            <div
+                style={{
+                    color:`${selected.value}`,
+                }}>
+                {selected.value}
+            </div>
+
         </div>
-    )
+
+    );
 };
 
 export default Dropdown;
