@@ -9,7 +9,10 @@ type DropdownProps = {
     options:  Array<LanguageT>;
     onSelectedChange: (option: LanguageT) => void;
 }
-
+// type EventI = {
+//     event: MouseEvent;
+//     target: Node | null;
+// }
 const Dropdown = ({ label, options, selected, onSelectedChange} : DropdownProps) => {
     const [open, setOpen] = useState(false);
     const ref = useRef<HTMLDivElement | null>(null);
